@@ -1,0 +1,291 @@
+<!-- Bootstrap CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+  /* Cart Table Styles */
+  .cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .cart-table th,
+  .cart-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .cart-table th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+  }
+
+  .cart-table td img {
+    width: 80px;
+    margin-right: 10px;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+  }
+
+  .cart-table td input.quantity-input {
+    width: 50px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .cart-table td input.quantity-input:hover {
+    border-color: #007bff;
+  }
+
+  .cart-table tr:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.02);
+  }
+
+  .cart-total {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #333;
+    text-align: right;
+  }
+
+  .cart-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .cart-actions .checkout-btn,
+  .cart-actions .continue-shopping-btn {
+    padding: 12px 25px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .cart-actions .checkout-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+
+  .cart-actions .continue-shopping-btn {
+    background-color: #28a745;
+  }
+
+  .cart-actions .continue-shopping-btn:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+
+  .remove-item {
+    padding: 6px 15px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .remove-item:hover {
+    background-color: #c82333;
+    transform: scale(1.1);
+  }
+</style>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">CLOTHING</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto me-3 mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/all-product">Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about">Contact Us</a></li>
+      </ul>
+
+      <form class="d-flex align-items-center" action="/search" method="GET">
+        <input class="form-control me-2 search-input" type="search" placeholder="Search">
+        <i class="fa-solid fa-heart icon me-2"></i>
+        <i class="fa-solid fa-shopping-cart icon me-2"></i>
+        <a href="/login" class="btn signin-btn ms-3">Sign In</a>      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- Cart Page Content -->
+<div class="container my-5">
+  <h2 class="mb-4">Your Shopping Cart</h2>
+
+  <% if (cart && cart.length > 0) { %>
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% cart.forEach(item => { %>
+          <tr>
+            <td>
+              <img src="/uploads/<%= item.mainImage %>" alt="Product Image" />
+              <span><%= item.name %></span>
+            </td>
+            <td>₹<%= item.price %></td>
+            <td>
+              <input type="number" value="<%= item.quantity %>" min="1" class="quantity-input" data-id="<%= item.id %>" />
+            </td>
+            <td>₹<%= item.price * item.quantity %></td>
+            <td>
+              <button class="remove-item" data-id="<%= item.id %>">Remove</button>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <div class="cart-total">
+      <strong>Total: ₹<%= cart.reduce((total, item) => total + (item.price * item.quantity), 0) %></strong>
+    </div>
+
+    <div class="cart-actions">
+      <a href="/checkout" class="checkout-btn">Proceed to Checkout</a>
+
+      <a href="/" class="continue-shopping-btn">Continue Shopping</a>
+    </div>
+  <% } else { %>
+    <p>Your cart is empty. <a href="/">Browse Products</a></p>
+  <% } %>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Quantity Change
+    document.querySelectorAll('.quantity-input').forEach(input => {
+      input.addEventListener('change', async (e) => {
+        const productId = e.target.dataset.id;
+        const newQuantity = parseInt(e.target.value);
+
+        await fetch(`/update-cart/${productId}?quantity=${newQuantity}`, { method: 'POST' });
+
+        // Update individual row total
+        const row = e.target.closest('tr');
+        const price = parseFloat(row.querySelector('td:nth-child(2)').textContent.replace('₹', ''));
+        const totalCell = row.querySelector('td:nth-child(4)');
+        totalCell.textContent = `₹${price * newQuantity}`;
+
+        // Update overall cart total
+        let total = 0;
+        document.querySelectorAll('.cart-table tbody tr').forEach(tr => {
+          const price = parseFloat(tr.querySelector('td:nth-child(2)').textContent.replace('₹', ''));
+          const qty = parseInt(tr.querySelector('.quantity-input').value);
+          total += price * qty;
+        });
+
+        document.querySelector('.cart-total strong').textContent = `Total: ₹${total}`;
+      });
+    });
+
+    // Remove Item
+    document.querySelectorAll('.remove-item').forEach(button => {
+      button.addEventListener('click', async (e) => {
+        const productId = e.target.dataset.id;
+
+        await fetch(`/remove-from-cart/${productId}`, { method: 'POST' });
+
+        // Reload page or remove the row
+        e.target.closest('tr').remove();
+
+        // Recalculate cart total
+        let total = 0;
+        document.querySelectorAll('.cart-table tbody tr').forEach(tr => {
+          const price = parseFloat(tr.querySelector('td:nth-child(2)').textContent.replace('₹', ''));
+          const qty = parseInt(tr.querySelector('.quantity-input').value);
+          total += price * qty;
+        });
+
+        const totalElement = document.querySelector('.cart-total strong');
+        if (totalElement) {
+          totalElement.textContent = `Total: ₹${total}`;
+        }
+
+        // If cart is empty, reload or display empty message
+        if (document.querySelectorAll('.cart-table tbody tr').length === 0) {
+          location.reload();
+        }
+      });
+    });
+  });
+</script>
+
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-col">
+      <h2>Devoe Retail</h2>
+      <p>Your one-stop shop for fashion essentials.</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Returns</a></li>
+      </ul>
+    </div>
+
+    
+  
+  
+
+    <div class="footer-col">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <p>Email: support@devoe.com</p>
+      <p>Phone: +91-9876543210</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Devoe Retail. All rights reserved.</p>
+  </div>
+</footer>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard - Orders</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      
+    }
+
+    .admin-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+  width: 250px;
+  background-color: #000; /* solid black */
+  color: #fff; /* white text */
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: black;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a,
+.sidebar ul li .dropdown-toggle {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li .dropdown-toggle:hover {
+  background-color: #222; /* dark grey on hover */
+}
+
+.dropdown-menu {
+  display: none;
+  padding-left: 15px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+
+    .content {
+      flex: 1;
+      padding: 40px;
+    }
+
+    .table-container {
+     
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    table th,
+    table td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    select {
+      min-width: 120px;
+    }
+
+    .btn-update {
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <%- include('../partials/admin-sidebar') %>
+
+    <div class="content">
+      <div class="table-container">
+        <h2>Order List</h2>
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th>Order ID</th>
+                <th>Customer Namw</th>
+                <th>Address</th>
+
+                <th>Total Amount</th>
+                <th>Payment Method</th>
+                <!-- <th>Update Status</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <% if (orders.length === 0) { %>
+                <tr>
+                  <td colspan="5">No orders found.</td>
+                </tr>
+              <% } else { %>
+                <% orders.forEach(order => { %>
+                  <tr>
+                    <td><%= order.id %></td>
+                    <td><%= order.name %></td>
+                    <td><%= order.address %></td>
+                    <td>₹<%= order.total_amount %></td>
+                    <td><%= order.payment_method %></td>
+                    
+                    
+                  </tr>
+                <% }) %>
+              <% } %> 
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

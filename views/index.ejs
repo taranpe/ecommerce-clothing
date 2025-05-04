@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clothing - E-commerce</title>
+
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+ 
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">CLOTHING</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto me-3 mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/all-products">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
+          
+        </ul>
+
+        <form class="d-flex align-items-center" action="/search" method="GET">
+          <input class="form-control me-2 search-input" type="search" name="q" placeholder="Search" required>
+          
+          <i class="fa-solid fa-heart icon ms-3"></i>
+          <a href="/cart" class="ms-3">
+            <i class="fa-solid fa-shopping-cart icon"></i>
+          </a>
+          <a href="/login" class="btn signin-btn ms-3">Sign In</a>
+        </form>
+        
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Carousel Section -->
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="container py-5 hero">
+          <div class="row align-items-center g-4">
+            <div class="col-lg-6 text-center text-lg-start">
+              <h1>Fashion Clothing – Wear It Like a Lion</h1>
+              <p>Belts, Bags, Perfumes & More — for the Modern Punjabi Gentleman</p>
+              <a href="#" class="btn-shop">Shop the Collection</a>
+            </div>
+            <div class="col-lg-6">
+              <img src="/images/banner1.png" class="d-block w-100" alt="Slide 1">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="container py-5 hero">
+          <div class="row align-items-center g-4">
+            <div class="col-lg-6 text-center text-lg-start">
+              <h1>Stand Out in Our Exclusive T-Shirts</h1>
+              <p>Explore new arrivals, limited designs & perfect fits</p>
+              <a href="#" class="btn-shop">Browse T-Shirts</a>
+            </div>
+            <div class="col-lg-6">
+              <img src="/images/banner2.jpg" class="d-block w-100" alt="Slide 2">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="container py-5 hero">
+          <div class="row align-items-center g-4">
+            <div class="col-lg-6 text-center text-lg-start">
+              <h1>Complete Your Look with Accessories</h1>
+              <p>Elevate your outfit with our curated accessory line</p>
+              <a href="#" class="btn-shop">View Accessories</a>
+            </div>
+            <div class="col-lg-6">
+              <img src="/images/banner3.jpg" class="d-block w-100" alt="Slide 3">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Carousel Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+ 
+     
+</section>
+<section class="categories">
+  <div class="container">
+    <h2 class="section-title" style="text-align: center;">SHOP BY CATEGORIES</h2>
+    <div class="scroll-wrapper">
+      <div class="category-row" id="categoryRow">
+        <a href="/all-products?category=shirt" class="category-item">
+          <img src="/images/cloth.webp" alt="Clothes"><h3>Shirts</h3>
+        </a>
+        <a href="/all-products?category=Perfume" class="category-item">
+          <img src="/images/Perfume.webp" alt="Perfume"><h3>Perfume</h3>
+        </a>
+        <a href="/all-products?category=Belt" class="category-item">
+          <img src="/images/belts.webp" alt="Belts"><h3>Belts</h3>
+        </a>
+        <a href="/all-products?category=Sunglasses" class="category-item">
+          <img src="/images/Sung.webp" alt="Sunglasses"><h3>Sunglasses</h3>
+        </a>
+        <a href="/all-products?category=Bag" class="category-item">
+          <img src="/images/bag.webp" alt="Bags"><h3>Bags</h3>
+        </a>
+        <a href="/all-products?category=Watch" class="category-item">
+          <img src="/images/Watch.webp" alt="Watch"><h3>Watches</h3>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+ <!-- views/index.ejs -->
+
+
+ <!-- Product List Section -->
+<!-- Product List Section -->
+<section id="product-list">
+  <div class="container">
+    <!-- View All Button -->
+    <div class="d-flex justify-content-end mb-3">
+      <a href="/all-products" class="btn btn-outline-primary">View All</a>
+    </div>
+
+    <div class="row">
+      <!-- Display only the first 8 products -->
+      <% products.slice(0, 6).forEach(function(product) { %>
+        <div class="col-md-4 mb-4">
+          <div class="card product-card">
+            <img src="/uploads/<%= product.mainImage %>" alt="Product Image" class="product-img" />
+
+            <!-- Icons for Wishlist and View Detail positioned at top-right -->
+            <div class="icons-container">
+              <!-- Wishlist Icon -->
+              <button class="wishlist-icon" data-id="<%= product.id %>">
+                <i class="fas fa-heart"></i>
+              </button>
+
+              <!-- View Detail Icon -->
+               <!-- View Detail Icon, now with its own class -->
+  <a href="/product-list/<%= product.id %>" class="view-detail-icon">
+    <i class="fas fa-eye"></i>
+  </a>
+</div>
+            <div class="card-body">
+              <h6 class="card-title"><%= product.name %></h6>
+              <p class="card-price">₹<%= product.price %></p>
+
+              <!-- Add to Cart Button -->
+              <form action="/add-to-cart/<%= product.id %>" method="POST">
+                <button class="btn btn-primary add-to-cart" data-id="<%= product.id %>">Add to Cart</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+        
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h2>Devoe Retail</h2>
+        <p>Your one-stop shop for fashion essentials.</p>
+      </div>
+  
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Returns</a></li>
+        </ul>
+      </div>
+
+      
+    
+    
+  
+      <div class="footer-col">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+        </div>
+      </div>
+  
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <p>Email: support@devoe.com</p>
+        <p>Phone: +91-9876543210</p>
+      </div>
+    </div>
+  
+    <div class="footer-bottom">
+      <p>&copy; 2025 Devoe Retail. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  
+
+ 
+    
+  
+  
+  
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  
+  <!-- Bootstrap Bundle JS -->
+  
+  
+  
+</body>
+</html>
